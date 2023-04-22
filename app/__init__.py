@@ -16,11 +16,11 @@ def create_db():
   db.create_all()
   print("Banco de dados criado com sucesso")
   
-@app.cli.command("db_drop")
+@cli.command("db_drop")
 def db_drop():
     db.drop_all()
 
-@app.cli.command("db_migrate")
+@cli.command("db_migrate")
 def db_migrate():
     MigrateCommand().run()
 
