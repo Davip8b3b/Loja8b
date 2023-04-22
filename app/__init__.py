@@ -1,7 +1,7 @@
 from flask import Flask
 from flask.cli import FlaskGroup
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///storage.db'
@@ -15,5 +15,13 @@ cli = FlaskGroup(app)
 def create_db(): 
   db.create_all()
   print("Banco de dados criado com sucesso")
+  
+@app.cli.command("db_drop")
+def db_drop():
+    db.drop_all()
+
+@app.cli.command("db_migrate")
+def db_migrate():
+    MigrateCommand().run()
 
 from app.controllers import default
