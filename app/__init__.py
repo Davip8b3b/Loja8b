@@ -12,8 +12,8 @@ migrate = Migrate(app, db)
 cli = FlaskGroup(app)
 
 @cli.command()
-class create_all(): 
-  def db.create_all()
+def create_all(): 
+  db.create_all()
   print("Banco de dados criado com sucesso")
 
 from app.controllers import default
