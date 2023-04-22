@@ -12,7 +12,7 @@ migrate = Migrate(app, db)
 cli = FlaskGroup(app)
 
 @cli.command()
-def create_all(): 
+def create_db(): 
   db.create_all()
   print("Banco de dados criado com sucesso")
 
