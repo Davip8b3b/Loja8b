@@ -1,18 +1,19 @@
 from flask import Flask
 from flask.cli import FlaskGroup
 from flask_sqlalchemy import SQLAlchemy
-#from flask_script import Manager
 from flask_migrate import Migrate
-
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///storage.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-#o manager ele gerencia/comanda e vai inicializar o programa 
-#manager = Manager(app) 
-#manager.add_command('db', MigrateCommand)
+#o flask group que está dentro do CLI vai cuidar de injetar comandos e executar nossa aplicação 
 cli = FlaskGroup(app)
+
+@cli.command()
+class create_all(): 
+  def db.create_all()
+  print("Banco de dados criado com sucesso")
 
 from app.controllers import default
